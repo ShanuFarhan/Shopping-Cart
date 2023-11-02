@@ -1,0 +1,50 @@
+.addheading{
+    color: var(--gray-900, #212121);
+    font-family: Poppins;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 74px;
+    margin-left: 10px;
+}
+.main-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.formdiv{
+    display: flex;
+    width: 50%;
+    height: 300px;
+    margin-top: 40px;
+    margin-left: 20px;
+}
+input{
+    width: 200px;
+}
+select{
+    width: 200px;
+}
+.containerImage{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 10px;
+    align-items: center;
+    margin-left: 330px;
+    margin-top: -70px;
+}
+.containerImage img{
+    height: 350px;
+}
+.buttons{
+    margin-bottom: 50px;
+    margin-left: 150px;
+}
+.choose{
+    height: 2px;
+}
+.gotobtn{
+    display: flex;
+    margin-bottom: 50px;
+    width: 220px;
+}

@@ -1,0 +1,9 @@
+
+.actionbtn{
+    display: flex;
+    flex-direction: row;
+}
+.actionbtn img{
+    margin-right: 10px;
+    cursor: pointer;
+}

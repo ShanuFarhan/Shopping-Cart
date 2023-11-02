@@ -1,0 +1,83 @@
+<div class="container-fluid">
+    <div class="heading">
+    <h2 class="addheading">Add products</h2>
+</div>
+<div class="main-container">
+    <form [formGroup]="myform" (ngSubmit)="onSubmit()" class="formdiv row">
+        <div class="col-md-6">
+            <input type="text" formControlName="name"  placeholder="Name" class="form-control"
+            [ngClass]="{'is-invalid':submit&&f.name.errors}"
+            >
+            <div *ngIf="submit&&f.name.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required">Required</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <select formControlName="gender" class="form-select" 
+            [ngClass]="{'is-invalid':submit&&f.gender.errors}"
+            >
+            <div *ngIf="submit&&f.gender.errors" class="invalid-feedback">
+                <div *ngIf="f.gender.errors.required">Required</div>
+            </div>
+                <option selected disabled value="">Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+              </select>
+          </div>
+          <div class="col-md-6">
+            <input formControlName="price" type="number" placeholder="Price" class="form-control"
+            [ngClass]="{'is-invalid':submit&&f.price.errors}"
+            >
+            <div *ngIf="submit&&f.price.errors" class="invalid-feedback">
+                <div *ngIf="f.price.errors.required">Required</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <input formControlName="currency" type="text" placeholder="Currency" class="form-control"
+            [ngClass]="{'is-invalid':submit&&f.currency.errors}"
+            >
+            <div *ngIf="submit&&f.currency.errors" class="invalid-feedback">
+                <div *ngIf="f.currency.errors.required">Required</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <input formControlName="color" type="text" placeholder="SelectColor" class="form-control"
+            [ngClass]="{'is-invalid':submit&&f.color.errors}"
+            >
+            <div *ngIf="submit&&f.color.errors" class="invalid-feedback">
+                <div *ngIf="f.color.errors.required">Required</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <input formControlName="quantity" type="number" placeholder="Quantity" class="form-control"
+            [ngClass]="{'is-invalid':submit&&f.quantity.errors}"
+            >
+            <div *ngIf="submit&&f.quantity.errors" class="invalid-feedback">
+                <div *ngIf="f.quantity.errors.required">Required</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="btn btn-primary btn-rounded">
+                <label class="form-label text-white m-1 choose" for="customFile1">Choose file</label>
+                <input formControlName="image" type="file" class="form-control d-none" id="customFile1"
+                [ngClass]="{'is-invalid':submit&&f.image.errors}"
+                >
+                <div *ngIf="submit&&f.imageerrors" class="invalid-feedback">
+                    <div *ngIf="f.image.errors.required">Required</div>
+                </div>
+            </div>        
+        </div>
+          <div class="buttons">
+            <button (click)="handleReset()"  class="btn btn-light">Reset</button>
+            <button type="submit" class="btn btn-dark">Save</button>
+        </div>
+    </form>
+    <div class="containerImage">
+        <div class="float-end">
+        <button routerLink="/productlist" class="btn btn-dark gotobtn">Go To Product Listing Page</button>
+        </div>
+        <img src="../../../assets/Vector 176.png" alt="">
+    </div>
+    
+</div>
+</div>
