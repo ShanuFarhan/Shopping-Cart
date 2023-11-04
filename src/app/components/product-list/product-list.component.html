@@ -2,8 +2,8 @@
     <div class="float-end mb-3">
         <button routerLink="/addproduct" class="btn btn-dark">Add Product</button>
     </div>
-<table class="table table-bordered">
-    <thead>
+<table class="table table-bordered ">
+    <thead class="table-warning">
         <tr>
           <th scope="col">Sl no.</th>
           <th scope="col">Name</th>
@@ -27,17 +27,66 @@
             {{product.name}}
           </div>
           </td>
-          <td>{{product.gender}}</td>
-          <td>{{product.price}}</td>
-          <td>{{product.currency}}</td>
-          <td>{{product.quantity}}</td>
-          <td>{{product.image}}</td>
-          <td>{{product.color}}</td>
           <td>
-            <div class="actionbtn">
-            <button style="border: none;" (click)="deleteProduct(savedProducts)"><img src="../../../assets/Group 1508.png" alt=""></button>
-            <button style="border: none;" (click)="editProduct(product)"> <img src="../../../assets/Group 1507.png" alt=""></button>
+            <div *ngIf="product.isEdit">
+              <input type="text" [(ngModel)]="product.gender" class="form-control">
             </div>
+            <div *ngIf="!product.isEdit">
+              {{product.gender}}
+            </div>
+          </td>
+          <td>
+            <div *ngIf="product.isEdit">
+              <input type="text" [(ngModel)]="product.price" class="form-control">
+            </div>
+            <div *ngIf="!product.isEdit">
+              {{product.price}}
+            </div>
+          </td>
+          <td>
+            <div *ngIf="product.isEdit">
+              <input type="text" [(ngModel)]="product.currency" class="form-control">
+            </div>
+            <div *ngIf="!product.isEdit">
+              {{product.currency}}
+            </div>
+          </td>
+          <td>
+            <div *ngIf="product.isEdit">
+              <input type="text" [(ngModel)]="product.quantity" class="form-control">
+            </div>
+            <div *ngIf="!product.isEdit">
+              {{product.quantity}}
+            </div>
+          </td>
+          <td>
+            <div *ngIf="product.isEdit">
+            <label class="form-label text-white m-1 choose" for="customFile1">Choose file</label>
+                <input  type="file" class="form-control d-none" id="customFile1">
+              </div>
+              <div *ngIf="!product.isEdit">
+                {{product.image}}
+              </div>
+          </td>
+          <td>
+            <div *ngIf="product.isEdit">
+              <input type="text" [(ngModel)]="product.color" class="form-control">
+            </div>
+            <div *ngIf="!product.isEdit">
+              {{product.color}}
+            </div>
+          </td>
+          <td>
+            <div class="actionbtn" >
+              <div *ngIf="product.isEdit">
+              <i (click)="update(product)" class="fa-solid fa-floppy-disk"></i>
+              <i (click)="cancel(product)" class="fa-solid fa-xmark"></i>
+            </div>
+            <div *ngIf="!product.isEdit">
+            <button style="border: none;" (click)="DeleteProduct(product)" ><img src="../../../assets/Group 1508.png" alt=""></button>
+            <button style="border: none;" (click)="editProduct(product)"> <img src="../../../assets/Group 1507.png" alt=""></button>
+          </div>
+          </div>
           </td>
         </tr>
     </tbody>

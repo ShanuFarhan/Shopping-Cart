@@ -1,0 +1,11 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    min-height: 10px;
+}
+.card-deck{
+    display: flex;
+    justify-content: space-around;
+    max-width: 1300px;
+    flex-wrap: wrap;
+}

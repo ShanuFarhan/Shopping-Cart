@@ -9,6 +9,9 @@ import { HeaderComponent } from './components/header/header.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductDisplayComponent } from './components/product-display/product-display.component';
 import { ProductsComponent } from './components/products/products.component';
+import { CartComponent } from './components/cart/cart.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CartItemComponent } from './components/cart-item/cart-item.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,13 +20,17 @@ import { ProductsComponent } from './components/products/products.component';
     HeaderComponent,
     ProductListComponent,
     ProductDisplayComponent,
-    ProductsComponent
+    ProductsComponent,
+    CartComponent,
+    CartItemComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

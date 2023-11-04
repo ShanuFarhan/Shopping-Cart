@@ -26,7 +26,7 @@ export class AddProductComponent {
     
   }
   get f(){
-    return this.myform.controls
+    return this.myform.controls    
   }
   onSubmit(){
     this.submit=true

@@ -1,14 +1,24 @@
-<div class="card mb-3" style="max-width: 540px;">
-    <div class="row g-0">
+
+    <div class="row">
       <div class="col-md-4">
-        <img src="..." class="img-fluid rounded-start" alt="...">
+        <!-- [src]='item.image' -->
+        <img src="https://www.pngall.com/wp-content/uploads/5/Long-Sleeve-Shirt-PNG-Clipart.png"
+         class="img-fluid rounded-start" alt="Image">
       </div>
       <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        <div class="card-body" >
+          <h4 class="card-title">{{item.name}}</h4>
+          <p class="card-text text-danger">{{item.currency}}{{item.price}}</p>
+          <ul>
+            <li><small> for {{item.gender}}</small></li>
+            <li><small>cloth type:Cotton</small></li>
+          </ul>
+            <div *ngIf="showCounter">
+          <button class="btn btn-success text-light counterbtn m-2" (click)="handleIncrease(item)">+</button>
+          <span>{{count}}</span>
+          <button class="btn btn-success text-light counterbtn m-2" (click)="handleDecrease(item)">-</button>
         </div>
+          <button  (click)="addtocart(item)" class="btn btn-success">ADD TO CART</button>
+        </div>       
+       </div>
       </div>
-    </div>
-  </div>

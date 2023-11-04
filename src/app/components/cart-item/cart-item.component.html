@@ -1,0 +1,42 @@
+
+
+<div class="tableone" >
+    <table class="table table-bordered" style="min-width: 700px;" >
+        <thead>
+          <tr class="table-active">
+            <th scope="col"></th>
+            <th scope="col">PRODUCT</th>
+            <th scope="col">PRICE</th>
+            <th scope="col">QUANTITY</th>
+            <th scope="col">TOTAL</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let item of cartItems">
+          <tr>
+            <th scope="row"><i (click)="cancelcart(item)" class="fa-solid fa-xmark"></i></th>
+            <td>{{item.name}}</td>
+            <td class="text-success">{{item.currency}}{{item.price}}</td>
+            <td>{{item.quantity}}</td>
+            <td class="text-success">{{item.currency}}{{item.price*item.quantity}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tabletwo">
+      <table class="table table-bordered" style="min-width: 400px;" >
+        <thead>
+          <tr class="table-active">
+            <th scope="col">Card totals</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody  >
+          <tr *ngFor="let item of cartItems;let i=index">
+            <th  >Sub total</th>
+            <td>{{(item.price*item.quantity)*(i+1)}}</td>   
+          </tr>
+        </tbody>
+      </table>
+      <button style="min-width: 400px;" class="btn btn-primary">PROCEED TO CHECKOUT</button>
+    </div> 
+     

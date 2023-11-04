@@ -3,6 +3,12 @@
     display: flex;
     flex-direction: row;
 }
+.actionbtn i{
+    cursor: pointer;
+    margin-right: 15px;
+    color: blue;
+    height: 10px;
+}
 .actionbtn img{
     margin-right: 10px;
     cursor: pointer;

@@ -62,13 +62,13 @@
                 <input formControlName="image" type="file" class="form-control d-none" id="customFile1"
                 [ngClass]="{'is-invalid':submit&&f.image.errors}"
                 >
-                <div *ngIf="submit&&f.imageerrors" class="invalid-feedback">
+                <div *ngIf="submit&&f.image.errors" class="invalid-feedback">
                     <div *ngIf="f.image.errors.required">Required</div>
                 </div>
             </div>        
         </div>
           <div class="buttons">
-            <button (click)="handleReset()"  class="btn btn-light">Reset</button>
+            <button (click)="handleReset()" class="btn btn-light">Reset</button>
             <button type="submit" class="btn btn-dark">Save</button>
         </div>
     </form>
