@@ -12,6 +12,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { CartComponent } from './components/cart/cart.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
+import { FooterComponent } from './components/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +24,7 @@ import { CartItemComponent } from './components/cart-item/cart-item.component';
     ProductsComponent,
     CartComponent,
     CartItemComponent,
+    FooterComponent,
     
   ],
   imports: [

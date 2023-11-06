@@ -29,8 +29,6 @@ export class ProductListComponent {
       // item.forEach((element:any) => {
       //   element.isEdit=false
       // });
-      item.isEdit=true;
-
     }
     update(item:any){
       // console.log(this.savedProducts);

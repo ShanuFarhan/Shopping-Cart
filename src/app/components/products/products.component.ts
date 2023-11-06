@@ -1,5 +1,5 @@
 import { Component,EventEmitter,Input, Output} from '@angular/core';
-import { MessengerService } from 'src/app/services/messenger.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-products',
@@ -7,30 +7,35 @@ import { MessengerService } from 'src/app/services/messenger.service';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent {
-  @Input() item:any
+  @Input() item:any=[]
   @Input() savedProducts:any[]=[]
+  clickedProducts:any=[]
   count:number=0
   showCounter: boolean = false;
- constructor(private msg:MessengerService){
-  // const storedData = localStorage.getItem('data');
-  //   if (storedData) {
-  //     this.savedProducts = JSON.parse(storedData);
-  //   }
- }
+//  constructor(private msg:MessengerService){
+//   const storedData = localStorage.getItem('data');
+//     if (storedData) {
+//       this.savedProducts = JSON.parse(storedData);
+//     }
+//  }
+constructor(private productService:ProductService) {
+}
   handleIncrease(count:any){
-    if(this.count>=this.item.quantity){
+    if(count.quantity>=5){
       alert("out of stock")
       return
     }
     else
-    this.count++;
+    count.quantity++;
   }
   handleDecrease(count:any){
-    if(this.count>0)
-      this.count--;
+    if(count.quantity>0)
+      count.quantity--;
   }
-  addtocart(savedProducts:any) {
-    this.msg.sentMsg(savedProducts)    
+  addtocart(item:any) {
+
+      this.productService.addClickedProduct(item);
+
   }
-  }
+}
 

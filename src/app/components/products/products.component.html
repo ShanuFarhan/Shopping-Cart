@@ -15,10 +15,10 @@
           </ul>
             <div *ngIf="showCounter">
           <button class="btn btn-success text-light counterbtn m-2" (click)="handleIncrease(item)">+</button>
-          <span>{{count}}</span>
+          <span>{{item.quantity}}</span>
           <button class="btn btn-success text-light counterbtn m-2" (click)="handleDecrease(item)">-</button>
         </div>
-          <button  (click)="addtocart(item)" class="btn btn-success">ADD TO CART</button>
+          <button *ngIf="!showCounter" (click)="addtocart(item);showCounter = true" class="btn btn-success">ADD TO CART</button>
         </div>       
        </div>
       </div>

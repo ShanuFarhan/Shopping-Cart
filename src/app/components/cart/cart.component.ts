@@ -8,7 +8,7 @@ import { CartItemComponent } from '../cart-item/cart-item.component';
 })
 export class CartComponent  {
   cartItems: any[] = [];
-  savedProducts:any
- 
-  
+  savedProducts:any=[]
+
+
 }
