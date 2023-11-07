@@ -50,7 +50,6 @@ export class ProductListComponent {
     }
     
     onProductSave(updatedProduct: any) {
-      // Call your product service to update the product
       this.productService.updateProduct(updatedProduct).subscribe(() => {
         // After successful update, hide the edit form
         this.showEditForm = false;
