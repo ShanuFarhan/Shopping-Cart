@@ -1,0 +1,11 @@
+.container-fluid{
+    margin-top: 0; 
+   
+}
+.content{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding-left: 200px;
+    gap: 10px; 
+}

@@ -9,6 +9,7 @@ import { ProductService } from 'src/app/services/product.service';
 export class CartItemComponent {
 @Input() cartItems:any[]=[]
 clickedProducts: any[] = [];
+
 carttotal=0
 constructor(private productService:ProductService ){
   this.clickedProducts = this.productService.getClickedProducts();
@@ -27,7 +28,7 @@ constructor(private productService:ProductService ){
 //   })
 // }
 handleIncrease(item:any){
-  if(item.quantity >this.clickedProducts){
+  if(item.quantity >=5){
     alert("out of stock")
     return
   }
@@ -43,9 +44,23 @@ cancelcart(item:any){
   this.productService.removeClickedProduct(item);
   this.clickedProducts = this.productService.getClickedProducts();
 }
+
+
+
 ngOnInit(){
   this.clickedProducts.forEach(item => {
-    this.carttotal+=(item.quantity*item.price)
+    if(item.currency==='$'){
+      this.carttotal+=(item.quantity*(item.price*83.25))
+    }
+    else if(item.currency==='€'){
+      this.carttotal+=(item.quantity*(item.price*89.42))
+    }
+    else if(item.currency==='£'){
+      this.carttotal+=(item.quantity*(item.price*103.16))
+        }
+    else if(item.currency==='₹'){
+    this.carttotal+=((item.quantity*item.price))
+    }
   });
 }
 }

@@ -33,12 +33,18 @@
             </div>
           </div>
           <div class="col-md-6">
-            <input formControlName="currency" type="text" placeholder="Currency" class="form-control"
+            <select formControlName="currency" class="form-select" 
             [ngClass]="{'is-invalid':submit&&f.currency.errors}"
             >
             <div *ngIf="submit&&f.currency.errors" class="invalid-feedback">
                 <div *ngIf="f.currency.errors.required">Required</div>
             </div>
+                <option selected disabled value="">Currency</option>
+                <option>₹</option>
+                <option>$</option>
+                <option>€</option>
+                <option>£</option>
+            </select>
           </div>
           <div class="col-md-6">
             <input formControlName="color" type="text" placeholder="SelectColor" class="form-control"
@@ -75,9 +81,8 @@
     <div class="containerImage">
         <div class="float-end">
         <button routerLink="/productlist" class="btn btn-dark gotobtn">Go To Product Listing Page</button>
-        </div>
-        <img src="../../../assets/Vector 176.png" alt="">
     </div>
-    
+    <img src="../../../assets/Vector 176.png" alt="">
+    </div>  
 </div>
 </div>

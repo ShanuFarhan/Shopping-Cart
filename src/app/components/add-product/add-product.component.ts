@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {FormGroup,FormControl, Validators,FormBuilder} from '@angular/forms'
+
 // import { LocalStorageServiceService } from 'src/app/services/local-storage-service.service';
 @Component({
   selector: 'app-add-product',
@@ -23,18 +24,15 @@ export class AddProductComponent {
       quantity:['',Validators.required],
       image:['',Validators.required]
     })
-    
   }
   get f(){
     return this.myform.controls    
   }
   onSubmit(){
     this.submit=true
-    // this.productKey = `product_${new Date().getTime()}`;
-    // localStorage.setItem(this.productKey, JSON.stringify(this.myform.value));
     if(!this.myform.invalid)
     this.product=Object.assign(this.product,this.myform.value)
-  this.addProduct(this.product)
+    this.addProduct(this.product)
   }
   handleReset(){
     this.myform.reset()
@@ -48,7 +46,5 @@ export class AddProductComponent {
     products=[product];
   }
   localStorage.setItem('data',JSON.stringify(products))
-  // console.log(products);
-  
 }
 }

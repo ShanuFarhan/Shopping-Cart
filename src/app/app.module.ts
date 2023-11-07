@@ -13,6 +13,9 @@ import { CartComponent } from './components/cart/cart.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { EditproductComponent } from './components/editproduct/editproduct.component'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +28,7 @@ import { FooterComponent } from './components/footer/footer.component';
     CartComponent,
     CartItemComponent,
     FooterComponent,
+    EditproductComponent,
     
   ],
   imports: [
@@ -32,7 +36,8 @@ import { FooterComponent } from './components/footer/footer.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

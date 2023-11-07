@@ -17,9 +17,9 @@
             <td>{{item.name}}</td>
             <td class="text-success">{{item.currency}}{{item.price}}</td>
             <td>
-              <button class="counterbtn" (click)="handleIncrease(item)">+</button>
-              {{item.quantity}}
               <button class="counterbtn" (click)="handleDecrease(item)">-</button>
+              {{item.quantity}}
+              <button class="counterbtn" (click)="handleIncrease(item)">+</button>
             </td>
             <td class="text-success">{{item.currency}}{{item.price*item.quantity}}</td>
           </tr>
@@ -37,13 +37,13 @@
         <tbody  >
           <tr *ngIf="clickedProducts">
             <th>Sub total</th>
-            <td class="text-success">{{carttotal|currency}}</td>   
+            <td class="text-success">{{carttotal|currency:'INR'}}</td>   
           </tr>
         </tbody>
         <tbody >
           <tr *ngIf="clickedProducts" >
             <th>Total</th>
-            <td class="text-success">{{carttotal|currency}}</td>   
+            <td class="text-success">{{carttotal|currency: 'INR'}}</td>   
           </tr>
         </tbody>
       </table>
