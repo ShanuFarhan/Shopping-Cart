@@ -3,79 +3,85 @@
     <h2 class="addheading">{{ isEditing ? 'Edit Product' : 'Add Product' }}</h2>
 </div>
 <div class="main-container">
-    <form  (ngSubmit)="saveProduct()" class="formdiv row">
+    <form [formGroup]="myform" (ngSubmit)="saveProduct()" class="formdiv row">
         <div class="col-md-6">
-            <input type="text" value=""  name="name" [(ngModel)]="product.name"  placeholder="Name" class="form-control"
+            <label for="">Name</label>
+            <input type="text" value="" formControlName="name" [(ngModel)]="product.name" placeholder="" class="form-control"
             [ngClass]="{'is-invalid':submit&&f.name.errors}"
             >
-            <div *ngIf="submit&&f.name.errors" class="invalid-feedback">
+            <div *ngIf="submit&&f.name.errors" class="invalid-feedback errorsdiv">
                 <div *ngIf="f.name.errors.required">Required</div>
             </div>
           </div>
           <div class="col-md-6">
-            <select name="gender" value="" [(ngModel)]="product.gender" class="form-select" 
+            <label for="">Gender</label>
+            <select name="gender" value="" formControlName="gender" [(ngModel)]="product.gender" class="form-select" 
             [ngClass]="{'is-invalid':submit&&f.gender.errors}"
             >
-            <div *ngIf="submit&&f.gender.errors" class="invalid-feedback">
-                <div *ngIf="f.gender.errors.required">Required</div>
-            </div>
                 <option selected disabled>Gender</option>
-                <option>Male</option>
-                <option>Female</option>
+                <option >Male</option>
+                <option >Female</option>
               </select>
+              <div *ngIf="submit&&f.gender.errors" class="invalid-feedback errorsdiv">
+                <div *ngIf="f.gender.errors.required">Required</div>
+            </div>  
           </div>
+
           <div class="col-md-6">
-            <input  name="price" value="" [(ngModel)]="product.price" type="number" placeholder="Price" class="form-control"
+            <label for="">Price</label>
+            <input  name="price" value="" formControlName="price" [(ngModel)]="product.price" type="number" placeholder="" class="form-control"
             [ngClass]="{'is-invalid':submit&&f.price.errors}"
             >
-            <div *ngIf="submit&&f.price.errors" class="invalid-feedback">
+            <div *ngIf="submit&&f.price.errors" class="invalid-feedback errorsdiv">
                 <div *ngIf="f.price.errors.required">Required</div>
             </div>
           </div>
           <div class="col-md-6">
-            <select  name="currency" value="" [(ngModel)]="product.currency" class="form-select" 
+            <label for="">Currency</label>
+            <select  formControlName="currency"  value="currency" [(ngModel)]="product.currency" class="form-select" 
             [ngClass]="{'is-invalid':submit&&f.currency.errors}"
             >
-            <div *ngIf="submit&&f.currency.errors" class="invalid-feedback">
-                <div *ngIf="f.currency.errors.required">Required</div>
-            </div>
-                <option selected>Currency</option>
+                <option selected disabled>Currency</option>
                 <option>₹</option>
                 <option>$</option>
                 <option>€</option>
                 <option>£</option>
             </select>
+            <div *ngIf="submit&&f.currency.errors" class="invalid-feedback errorsdiv">
+                <div *ngIf="f.currency.errors.required">Required</div>
+            </div>
           </div>
           <div class="col-md-6">
-            <input  name="color" value="" [(ngModel)]="product.color" type="text" placeholder="SelectColor" class="form-control"
+            <label for="">Color</label>
+            <input  name="color" value="" formControlName="color" [(ngModel)]="product.color" type="text" placeholder="" class="form-control"
             [ngClass]="{'is-invalid':submit&&f.color.errors}"
             >
-            <div *ngIf="submit&&f.color.errors" class="invalid-feedback">
+            <div *ngIf="submit&&f.color.errors" class="invalid-feedback errorsdiv">
                 <div *ngIf="f.color.errors.required">Required</div>
             </div>
           </div>
           <div class="col-md-6">
-            <input  name="quantity"  value="" [(ngModel)]="product.quantity" type="number" placeholder="Quantity" class="form-control"
+            <label for="">Quantity</label>
+            <input  name="quantity" formControlName="quantity" value="" [(ngModel)]="product.quantity" type="number" placeholder="" class="form-control"
             [ngClass]="{'is-invalid':submit&&f.quantity.errors}"
             >
-            <div *ngIf="submit&&f.quantity.errors" class="invalid-feedback">
+            <div *ngIf="submit&&f.quantity.errors" class="invalid-feedback errorsdiv">
                 <div *ngIf="f.quantity.errors.required">Required</div>
             </div>
           </div>
           <div class="col-md-6">
-            <div class="btn btn-primary btn-rounded">
-                <label class="form-label text-white m-1 choose" for="customFile1">Choose file</label>
-                <input  [(ngModel)]="product.image" value="" name="image" type="file" class="form-control d-none" id="customFile1"
+                <!-- <label class="form-label text-white m-1 choose" for="customFile1">Choose file</label> -->
+                <!-- <input type="file" name="image" [(ngModel)]="product.image" value="" class="form-control" id="customFile1" -->
+                <input  name="image" formControlName="image" value="image" [(ngModel)]="product.image" type="file" placeholder="" class="form-control"
                 [ngClass]="{'is-invalid':submit&&f.image.errors}"
                 >
-                <div *ngIf="submit&&f.image.errors" class="invalid-feedback">
+                <div *ngIf="submit&&f.image.errors" class="invalid-feedback errorsdiv">
                     <div *ngIf="f.image.errors.required">Required</div>
                 </div>
             </div>        
-        </div>
           <div class="buttons">
             <button (click)="handleReset()" class="btn btn-light">Reset</button>
-            <button type="submit" class="btn btn-dark">{{ isEditing ? 'Save' : 'Add' }}</button>
+            <button type="submit" class="btn btn-dark">Save</button>
         </div>
     </form>
     <div class="containerImage">

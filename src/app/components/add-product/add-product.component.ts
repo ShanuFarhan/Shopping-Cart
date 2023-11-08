@@ -25,7 +25,7 @@ export class AddProductComponent {
       currency:[' ',Validators.required],
       color:[' ',Validators.required],
       quantity:[' ',Validators.required],
-      image:[' ',Validators.required]
+      image:[this.product.image,[Validators.required]]
     })
 
     this.route.params.subscribe(params => {
@@ -45,7 +45,8 @@ export class AddProductComponent {
     });
   }
   get f(){
-    return this.myform.controls    
+    return this.myform.controls 
+
   }
   // onSubmit(){
   //   this.submit=true
@@ -57,18 +58,22 @@ export class AddProductComponent {
     this.myform.reset()
   }
   saveProduct() {
+    console.log(this.f);
+    this.submit=true
     if (this.isEditing) {
-      const products:any = this.productService.getProducts();
-      debugger      
+      // if(!this.myform.invalid){
+      const products:any = this.productService.getProducts();     
       const productId = +this.route.snapshot.params['id'];
       products[productId] = this.product;
       this.productService.updateProduct(productId, this.product);
-      
+      this.router.navigate(['/productlist']);
+      // }
     } else {
+      if(!this.myform.invalid){
       this.productService.addProduct(this.product);
+      this.router.navigate(['/productlist']);
+      }
     }
-    this.router.navigate(['/productlist']);
-  
 }
 }
 //   addProduct(product:any){

@@ -2,7 +2,10 @@
     <div class="float-end mb-3">
         <button routerLink="/addproduct" class="btn btn-dark">Add Product</button>
     </div>
-<table class="table table-bordered ">
+    <div class="head" *ngIf="products.length===0">
+      <h4 style="font-family: Poppins;">Add Product!</h4>
+    </div>
+<table *ngIf="products.length>0" class="table table-bordered ">
     <thead class="table-warning">
         <tr>
           <th scope="col">Sl no.</th>
@@ -36,7 +39,7 @@
           </td>
           <td>
                 {{product.image}}
-                        </td>
+          </td>
           <td>
               {{product.color}}
           </td>

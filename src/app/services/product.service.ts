@@ -30,7 +30,7 @@ export class ProductService {
   deleteProduct(index: number): void {
     this.savedProducts.splice(index, 1);
     this.saveProductsToLocalStorage();
-    localStorage.setItem('clickedProducts', JSON.stringify(this.clickedProducts));
+    localStorage.setItem('clickedProducts', JSON.stringify(this.savedProducts));
   }
   updateProduct(index: number, updatedProduct: any): void {
     this.savedProducts[index] = updatedProduct;

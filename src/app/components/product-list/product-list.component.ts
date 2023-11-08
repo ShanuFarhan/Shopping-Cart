@@ -1,8 +1,4 @@
 import { Component,Input } from '@angular/core';
-import { AddProductComponent } from '../add-product/add-product.component';
-// import { LocalStorageServiceService } from 'src/app/services/local-storage-service.service';
-import {MatDialog} from "@angular/material/dialog"
-import { EditproductComponent } from '../editproduct/editproduct.component';
 import { ProductService } from 'src/app/services/product.service';
 import { Router } from '@angular/router';
 @Component({

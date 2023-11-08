@@ -1,6 +1,9 @@
 <div class="float-end " style="margin-right: 20px;">
     <button routerLink="/cart" class="btn btn-dark">Go to cart</button>
 </div>
+<div class="heading" *ngIf="savedProducts.length===0">
+    <h4 style="font-family: Poppins;">Products are empty</h4>
+</div>
 <div class="card-deck" >
 <div  style="max-width: 400px; margin-left: 30px;margin-top: 50px;" *ngFor="let item of savedProducts">
 <app-products [item]="item" [savedProducts]="savedProducts"></app-products>

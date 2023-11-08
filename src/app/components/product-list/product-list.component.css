@@ -39,3 +39,9 @@
     background-color: whitesmoke;
     bottom: 60px;
 } */
+
+.head{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

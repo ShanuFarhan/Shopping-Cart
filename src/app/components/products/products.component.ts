@@ -10,7 +10,7 @@ export class ProductsComponent {
   @Input() item:any=[]
   @Input() savedProducts:any[]=[]
   clickedProducts:any=[]
-  quantity:number=0
+  quantity:number=1
   showCounter: boolean = false;
 //  constructor(private msg:MessengerService){
 //   const storedData = localStorage.getItem('data');
@@ -38,7 +38,7 @@ constructor(private productService:ProductService ){
 
   }
   handleDecrease(count:any){
-    if(this.quantity>0)
+    if(this.quantity>1)
       this.quantity--;
       count.quantity=this.quantity-count.quantity
       // this.quantity=count.quantity

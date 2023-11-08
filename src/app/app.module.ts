@@ -13,7 +13,6 @@ import { CartComponent } from './components/cart/cart.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { EditproductComponent } from './components/editproduct/editproduct.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -28,7 +27,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CartComponent,
     CartItemComponent,
     FooterComponent,
-    EditproductComponent,
     
   ],
   imports: [

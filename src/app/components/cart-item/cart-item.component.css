@@ -14,3 +14,9 @@
 .counterbtn{
     border: none;
 }
+.heading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Poppins;
+}

@@ -14,10 +14,15 @@
 .formdiv{
     display: flex;
     width: 50%;
-    height: 300px;
-    margin-top: 40px;
+    height: 450px;
+    margin-top: 10px;
     margin-left: 20px;
 }
+.errorsdiv{
+    position: absolute;
+    width: 60px;
+}
+
 input{
     width: 200px;
 }

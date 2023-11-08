@@ -9,3 +9,8 @@
     max-width: 1300px;
     flex-wrap: wrap;
 }
+.heading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
