@@ -17,12 +17,15 @@
     position: absolute;
     right: 0;
     left: 10;
-    margin: -100px 0; /* Adjust the margin as needed */
+    top: 100px;
+    margin: -100px 0; 
     text-align: center;
     background-color: wheat;
     display: flex;
-    justify-content: flex-end;
-    width: 20%;
+    padding-top: 0px;
+    justify-content: center;
+    width: 30%;
+    border-radius: 10px;
   }
 /* .editform{
     display: flex;

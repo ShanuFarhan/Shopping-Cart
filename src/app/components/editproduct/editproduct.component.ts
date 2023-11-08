@@ -35,7 +35,6 @@ export class EditproductComponent {
       // localStorage.setItem('data',JSON.stringify(this.editProductForm))
     }
   }
-
   onCancel() {
     this.cancel.emit();
   }

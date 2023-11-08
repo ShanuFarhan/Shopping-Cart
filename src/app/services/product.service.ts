@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  SavedProducts:any[]=[]
+  savedProducts:any=[]
   private clickedProducts: number[] = [];
 
   constructor() {
@@ -13,13 +13,31 @@ export class ProductService {
     if (savedProducts) {
       this.clickedProducts = JSON.parse(savedProducts);
     }
-    const storedData = localStorage.getItem('data');
-    if (storedData) {
-      this.SavedProducts = JSON.parse(storedData);
+    const storedData=localStorage.getItem('data');
+    if(storedData){
+      this.savedProducts=JSON.parse(storedData)
     }
   }
   getProducts(): Observable<any[]> {
-    return of(this.SavedProducts);
+    return of(this.savedProducts);
+  }
+    
+  addProduct(product: any): void {
+    this.savedProducts.push(product);
+    this.saveProductsToLocalStorage();
+  }
+
+  deleteProduct(index: number): void {
+    this.savedProducts.splice(index, 1);
+    this.saveProductsToLocalStorage();
+    localStorage.setItem('clickedProducts', JSON.stringify(this.clickedProducts));
+  }
+  updateProduct(index: number, updatedProduct: any): void {
+    this.savedProducts[index] = updatedProduct;
+    this.saveProductsToLocalStorage();
+  }
+  private saveProductsToLocalStorage() {
+    localStorage.setItem('data', JSON.stringify(this.savedProducts));    
   }
 
   getClickedProducts(): number[] {
@@ -32,27 +50,25 @@ export class ProductService {
       localStorage.setItem('clickedProducts', JSON.stringify(this.clickedProducts));
     }
   }
-  updateProduct(updatedProduct:any ): Observable<any> {
-    const existingProductIndex = this.SavedProducts.findIndex(
-      (p) => p.id === updatedProduct.id
-    );
-    if (existingProductIndex !== -1) {
-      this.SavedProducts[existingProductIndex] = { ...updatedProduct };
-      this.saveProductsToLocalStorage()
-      return of(updatedProduct);
-    }
-    return of(null); 
-  }
-  private saveProductsToLocalStorage() {
-    localStorage.setItem('data', JSON.stringify(this.SavedProducts));
-    console.log(this.SavedProducts);
-    
-  }
-removeClickedProduct(productId: number): void {
+  // updateProduct(updatedProduct:any ) {
+  //   const existingProductIndex = this.savedProducts.findIndex(
+  //     (p) => p.id === updatedProduct.id
+  //   );
+  //   if (existingProductIndex !== -1) {
+  //     this.savedProducts[existingProductIndex] = { ...updatedProduct };
+  //     this.saveProductsToLocalStorage()
+  //     return of(updatedProduct);
+  //   }
+  //   return of(null); 
+  // }
+ 
+removeClickedProduct(productId: number):void {
   const productIndex = this.clickedProducts.indexOf(productId);
   if (productIndex !== -1) {
     this.clickedProducts.splice(productIndex, 1);
-    localStorage.setItem('clickedProducts', JSON.stringify(this.clickedProducts));
+    localStorage.setItem("clickedProducts",JSON.stringify(this.clickedProducts))
   }
+  
+  
 }
 }

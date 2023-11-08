@@ -9,24 +9,15 @@ import { ProductService } from 'src/app/services/product.service';
 export class CartItemComponent {
 @Input() cartItems:any[]=[]
 clickedProducts: any[] = [];
+savedProducts:any=[]
 
 carttotal=0
 constructor(private productService:ProductService ){
   this.clickedProducts = this.productService.getClickedProducts();
+  this.savedProducts=productService.getProducts()
+  
 }
 
-// ngOnInit(){
-//   this.msg.getMsg().subscribe((product:any)=>{
-    
-//     console.log(product)
-//     this.cartItems.push({
-//       name:product.name,
-//       quantity:product.quantity,
-//       price:product.price,
-//       currency:product.currency,
-//     })
-//   })
-// }
 handleIncrease(item:any){
   if(item.quantity >=5){
     alert("out of stock")
@@ -34,10 +25,12 @@ handleIncrease(item:any){
   }
   else
   item.quantity++;
+  localStorage.setItem('clickedProducts',JSON.stringify(this.clickedProducts))
 }
 handleDecrease(item:any){
   if(item.quantity>0)
   item.quantity--
+  localStorage.setItem('clickedProducts',JSON.stringify(this.clickedProducts))
 }
 cancelcart(item:any){
   
@@ -48,6 +41,7 @@ cancelcart(item:any){
 
 
 ngOnInit(){
+  
   this.clickedProducts.forEach(item => {
     if(item.currency==='$'){
       this.carttotal+=(item.quantity*(item.price*83.25))

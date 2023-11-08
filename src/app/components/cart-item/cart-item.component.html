@@ -13,7 +13,7 @@
         </thead>
         <tbody *ngFor="let item of clickedProducts">
           <tr>
-            <th scope="row"><i (click)="cancelcart(item)" class="fa-solid fa-xmark"></i></th>
+            <th scope="row"><i style="cursor: pointer;" (click)="cancelcart(item)" class="fa-solid fa-xmark"></i></th>
             <td>{{item.name}}</td>
             <td class="text-success">{{item.currency}}{{item.price}}</td>
             <td>

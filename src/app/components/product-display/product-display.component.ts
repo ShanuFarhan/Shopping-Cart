@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ProductService } from 'src/app/services/product.service';
 @Component({
   selector: 'app-product-display',
   templateUrl: './product-display.component.html',
@@ -6,11 +7,14 @@ import { Component, Input } from '@angular/core';
 })
 export class ProductDisplayComponent {
 savedProducts:any[]=[]
- constructor(){
-  const storedData = localStorage.getItem('data');
-  if (storedData) {
-    this.savedProducts = JSON.parse(storedData);
-    
-  }}
-   
+constructor(private productService:ProductService)
+{
+ this.productService.getProducts().subscribe(res=>{
+  this.savedProducts=res
+ })
+  // const storedData = localStorage.getItem('data');
+  // if (storedData) {
+  //   this.savedProducts = JSON.parse(storedData);
+  // }
+}
 }

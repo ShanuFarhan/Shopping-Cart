@@ -1,11 +1,11 @@
 <div class="container-fluid">
     <div class="heading">
-    <h2 class="addheading">Add products</h2>
+    <h2 class="addheading">{{ isEditing ? 'Edit Product' : 'Add Product' }}</h2>
 </div>
 <div class="main-container">
-    <form [formGroup]="myform" (ngSubmit)="onSubmit()" class="formdiv row">
+    <form  (ngSubmit)="saveProduct()" class="formdiv row">
         <div class="col-md-6">
-            <input type="text" formControlName="name"  placeholder="Name" class="form-control"
+            <input type="text" value=""  name="name" [(ngModel)]="product.name"  placeholder="Name" class="form-control"
             [ngClass]="{'is-invalid':submit&&f.name.errors}"
             >
             <div *ngIf="submit&&f.name.errors" class="invalid-feedback">
@@ -13,19 +13,19 @@
             </div>
           </div>
           <div class="col-md-6">
-            <select formControlName="gender" class="form-select" 
+            <select name="gender" value="" [(ngModel)]="product.gender" class="form-select" 
             [ngClass]="{'is-invalid':submit&&f.gender.errors}"
             >
             <div *ngIf="submit&&f.gender.errors" class="invalid-feedback">
                 <div *ngIf="f.gender.errors.required">Required</div>
             </div>
-                <option selected disabled value="">Gender</option>
+                <option selected disabled>Gender</option>
                 <option>Male</option>
                 <option>Female</option>
               </select>
           </div>
           <div class="col-md-6">
-            <input formControlName="price" type="number" placeholder="Price" class="form-control"
+            <input  name="price" value="" [(ngModel)]="product.price" type="number" placeholder="Price" class="form-control"
             [ngClass]="{'is-invalid':submit&&f.price.errors}"
             >
             <div *ngIf="submit&&f.price.errors" class="invalid-feedback">
@@ -33,13 +33,13 @@
             </div>
           </div>
           <div class="col-md-6">
-            <select formControlName="currency" class="form-select" 
+            <select  name="currency" value="" [(ngModel)]="product.currency" class="form-select" 
             [ngClass]="{'is-invalid':submit&&f.currency.errors}"
             >
             <div *ngIf="submit&&f.currency.errors" class="invalid-feedback">
                 <div *ngIf="f.currency.errors.required">Required</div>
             </div>
-                <option selected disabled value="">Currency</option>
+                <option selected>Currency</option>
                 <option>₹</option>
                 <option>$</option>
                 <option>€</option>
@@ -47,7 +47,7 @@
             </select>
           </div>
           <div class="col-md-6">
-            <input formControlName="color" type="text" placeholder="SelectColor" class="form-control"
+            <input  name="color" value="" [(ngModel)]="product.color" type="text" placeholder="SelectColor" class="form-control"
             [ngClass]="{'is-invalid':submit&&f.color.errors}"
             >
             <div *ngIf="submit&&f.color.errors" class="invalid-feedback">
@@ -55,7 +55,7 @@
             </div>
           </div>
           <div class="col-md-6">
-            <input formControlName="quantity" type="number" placeholder="Quantity" class="form-control"
+            <input  name="quantity"  value="" [(ngModel)]="product.quantity" type="number" placeholder="Quantity" class="form-control"
             [ngClass]="{'is-invalid':submit&&f.quantity.errors}"
             >
             <div *ngIf="submit&&f.quantity.errors" class="invalid-feedback">
@@ -65,7 +65,7 @@
           <div class="col-md-6">
             <div class="btn btn-primary btn-rounded">
                 <label class="form-label text-white m-1 choose" for="customFile1">Choose file</label>
-                <input formControlName="image" type="file" class="form-control d-none" id="customFile1"
+                <input  [(ngModel)]="product.image" value="" name="image" type="file" class="form-control d-none" id="customFile1"
                 [ngClass]="{'is-invalid':submit&&f.image.errors}"
                 >
                 <div *ngIf="submit&&f.image.errors" class="invalid-feedback">
@@ -75,7 +75,7 @@
         </div>
           <div class="buttons">
             <button (click)="handleReset()" class="btn btn-light">Reset</button>
-            <button type="submit" class="btn btn-dark">Save</button>
+            <button type="submit" class="btn btn-dark">{{ isEditing ? 'Save' : 'Add' }}</button>
         </div>
     </form>
     <div class="containerImage">

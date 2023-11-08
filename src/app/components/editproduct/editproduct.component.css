@@ -1,11 +1,38 @@
-.container-fluid{
-    margin-top: 0; 
-   
-}
-.content{
-    align-items: center;
+.formedit{
+    height: 100%;
+    gap: 20px;
+    width: 50%;
     display: flex;
     justify-content: center;
-    padding-left: 200px;
-    gap: 10px; 
+    align-items: center;
+    margin-left: 60px;
+    padding-top: 10px;
+    margin-top: 0px;
+    margin-top: 0px;
+    padding-bottom: 20px;
+}
+.formedit input{
+    width: 150px;
+}
+.formedit select{
+    width: 150px;
+}
+.buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 60px;
+}
+.heading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0px;
+}
+.heading h3{
+    margin-left: 50px;
+    font-weight: 800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

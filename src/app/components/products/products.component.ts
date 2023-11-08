@@ -10,7 +10,7 @@ export class ProductsComponent {
   @Input() item:any=[]
   @Input() savedProducts:any[]=[]
   clickedProducts:any=[]
-  count:number=0
+  quantity:number=0
   showCounter: boolean = false;
 //  constructor(private msg:MessengerService){
 //   const storedData = localStorage.getItem('data');
@@ -18,19 +18,31 @@ export class ProductsComponent {
 //       this.savedProducts = JSON.parse(storedData);
 //     }
 //  }
-constructor(private productService:ProductService) {
+constructor(private productService:ProductService ){
+  this.clickedProducts = this.productService.getClickedProducts();
+  this.clickedProducts.quantity=0
 }
   handleIncrease(count:any){
-    if(count.quantity>=5){
+    // console.log(count.quantity);
+    if(this.quantity>=5){
       alert("out of stock")
       return
     }
-    else
-    count.quantity++;
+    else{
+    this.quantity++;
+    }
+    count.quantity=this.quantity
+    
+    // this.quantity=count.quantity
+    localStorage.setItem('clickedProducts',JSON.stringify(this.clickedProducts))
+
   }
   handleDecrease(count:any){
-    if(count.quantity>0)
-      count.quantity--;
+    if(this.quantity>0)
+      this.quantity--;
+      count.quantity=this.quantity-count.quantity
+      // this.quantity=count.quantity
+      localStorage.setItem('clickedProducts',JSON.stringify(this.clickedProducts))
   }
   addtocart(item:any) {
 
