@@ -10,10 +10,11 @@
 .main-container{
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 .formdiv{
     display: flex;
-    width: 50%;
+    max-width: 50%;
     height: 450px;
     margin-top: 10px;
     margin-left: 20px;
@@ -22,7 +23,9 @@
     position: absolute;
     width: 60px;
 }
-
+.float-end{
+    max-width: 200px;
+}
 input{
     width: 200px;
 }
@@ -35,11 +38,12 @@ select{
     justify-content: space-around;
     gap: 10px;
     align-items: center;
-    margin-left: 330px;
+    margin-right: 50px;
+    margin-left: 50px;
     margin-top: -70px;
 }
 .containerImage img{
-    height: 350px;
+    max-height: 350px;
 }
 .buttons{
     margin-bottom: 50px;

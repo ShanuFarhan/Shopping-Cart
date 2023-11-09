@@ -8,6 +8,7 @@ span{
 .main-container{
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 .Sign{
     color: var(--gray-900, #212121);
@@ -18,8 +19,14 @@ span{
     line-height: 74px;
     margin-left: 10px;
 }
+@media (max-width:390px){
+    .Sign{
+        text-align: center;
+    }
+}
 .Signdiv{
     display: inline-flex;
+    flex-wrap: wrap;
     flex-direction: column;
     align-items: flex-start;
     gap: 60px;
@@ -27,9 +34,9 @@ span{
 }
 .adminsign{
     display: flex;
-    width: 500px;
+    min-width: 350px;
     height: 70px;  
-    margin-left: 90px;
+    margin-left: 30px;
     flex-direction: row;
     align-items: flex-start;
     gap: 10px;
@@ -40,9 +47,9 @@ span{
 }
 .usersign{
     display: flex;
-    width: 500px;
+    min-width: 350px;
     height: 70px;  
-    margin-left: 90px;
+    margin-left: 30px;
     flex-direction: row;
     align-items: flex-start;
     gap: 10px;
@@ -57,11 +64,12 @@ span{
     justify-content: space-around;
     gap: 10px;
     align-items: center;
-    margin-left: 400px;
+    margin-left: 80px;
     margin-top: 10px;
+    margin-right: 50px;
 }
 .containerImage img{
-    height: 350px;
+    max-height: 350px;
 }
 button:hover{
     background-color: lightblue;
