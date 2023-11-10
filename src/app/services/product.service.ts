@@ -18,6 +18,30 @@ export class ProductService {
       this.savedProducts=JSON.parse(storedData)
     }
   }
+  // constructor() {
+  //   const savedProducts = localStorage.getItem('clickedProducts');
+  //   if (savedProducts) {
+  //     try {
+  //       this.clickedProducts = JSON.parse(savedProducts);
+  
+  //       // Ensure that this.clickedProducts is an array
+  //       if (!Array.isArray(this.clickedProducts)) {
+  //         this.clickedProducts = [];
+  //       }
+  //     } catch (error) {
+  //       console.error('Error parsing clickedProducts from localStorage:', error);
+  //       this.clickedProducts = [];
+  //     }
+  //   } else {
+  //     this.clickedProducts = [];
+  //   }
+  
+  //   const storedData = localStorage.getItem('data');
+  //   if (storedData) {
+  //     this.savedProducts = JSON.parse(storedData);
+  //   }
+  // }
+  
   getProducts(): Observable<any[]> {
     return of(this.savedProducts);
   }

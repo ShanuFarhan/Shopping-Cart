@@ -13,13 +13,13 @@
             <li><small> for {{item.gender}}</small></li>
             <li><small>cloth type:Cotton</small></li>
           </ul>
-            <div *ngIf="showCounter">
+            <div *ngIf="showCounter||clickedProducts.length>0">
               <button class="btn btn-success text-light counterbtn m-2" (click)="handleDecrease(item)">-</button>
-          <span>{{quantity}}</span>
+          <span>{{item.quantity}}</span>
           <button class="btn btn-success text-light counterbtn m-2" (click)="handleIncrease(item)">+</button>
 
         </div>
-          <button *ngIf="!showCounter" (click)="addtocart(item);showCounter = true" class="btn btn-success">ADD TO CART</button>
+          <button *ngIf="clickedProducts.length===0" (click)="addtocart(item);showCounter = true" class="btn btn-success">ADD TO CART</button>
         </div>       
        </div>
       </div>
