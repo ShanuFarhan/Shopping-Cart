@@ -1,4 +1,4 @@
-import { Component,EventEmitter,Input, Output} from '@angular/core';
+import { Component,Input} from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -12,16 +12,9 @@ export class ProductsComponent {
   clickedProducts:any=[]
   quantity:number=1
   showCounter: boolean = false;
-//  constructor(private msg:MessengerService){
-//   const storedData = localStorage.getItem('data');
-//     if (storedData) {
-//       this.savedProducts = JSON.parse(storedData);
-//     }
-//  }
-constructor(private productService:ProductService ){
-  this.clickedProducts = this.productService.getClickedProducts();
-  // this.clickedProducts.quantity=0
-}
+// constructor(private productService:ProductService ){
+//   this.clickedProducts = this.productService.getClickedProducts();
+// }
   handleIncrease(count:any){
     // console.log(count.quantity);
     if(count.quantity>=5){
@@ -33,7 +26,7 @@ constructor(private productService:ProductService ){
     }
     // count.quantity=this.quantity
     this.quantity=count.quantity
-    localStorage.setItem('clickedProducts',JSON.stringify(this.clickedProducts))
+    // localStorage.setItem('clickedProducts',JSON.stringify(this.clickedProducts))
   }
   handleDecrease(count:any){
     if(count.quantity>1)
@@ -44,7 +37,7 @@ constructor(private productService:ProductService ){
   }
   addtocart(item:any) {
     
-        this.productService.addClickedProduct(item);
+        // this.productService.addClickedProduct(item);
       
     
   }

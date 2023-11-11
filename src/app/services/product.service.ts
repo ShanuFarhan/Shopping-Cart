@@ -1,98 +1,32 @@
+
+
 import { Injectable } from '@angular/core';
-import { ProductsComponent } from '../components/products/products.component';
-import { Observable, of } from 'rxjs';  
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductService {
-  savedProducts:any=[]
-  private clickedProducts: number[] = [];
+  private apiUrl = 'https://653fb25a9e8bd3be29e1100e.mockapi.io/addtocart/shopping';
 
-  constructor() {
-    const savedProducts = localStorage.getItem('clickedProducts');
-    if (savedProducts) {
-      this.clickedProducts = JSON.parse(savedProducts);
-    }
-    const storedData=localStorage.getItem('data');
-    if(storedData){
-      this.savedProducts=JSON.parse(storedData)
-    }
-  }
-  // constructor() {
-  //   const savedProducts = localStorage.getItem('clickedProducts');
-  //   if (savedProducts) {
-  //     try {
-  //       this.clickedProducts = JSON.parse(savedProducts);
-  
-  //       // Ensure that this.clickedProducts is an array
-  //       if (!Array.isArray(this.clickedProducts)) {
-  //         this.clickedProducts = [];
-  //       }
-  //     } catch (error) {
-  //       console.error('Error parsing clickedProducts from localStorage:', error);
-  //       this.clickedProducts = [];
-  //     }
-  //   } else {
-  //     this.clickedProducts = [];
-  //   }
-  
-  //   const storedData = localStorage.getItem('data');
-  //   if (storedData) {
-  //     this.savedProducts = JSON.parse(storedData);
-  //   }
-  // }
-  
-  getProducts(): Observable<any[]> {
-    return of(this.savedProducts);
-  }
-    
-  addProduct(product: any): void {
-    this.savedProducts.push(product);
-    this.saveProductsToLocalStorage();
+  constructor(private http: HttpClient) {}
+
+  addProduct(productData: any): Observable<any> {
+    return this.http.post(this.apiUrl, productData);
   }
 
-  deleteProduct(index: number): void {
-    this.savedProducts.splice(index, 1);
-    this.saveProductsToLocalStorage();
-    localStorage.setItem('clickedProducts', JSON.stringify(this.savedProducts));
+  getProducts(): Observable<any> {
+    return this.http.get(this.apiUrl);
   }
-  updateProduct(index: number, updatedProduct: any): void {
-    this.savedProducts[index] = updatedProduct;
-    this.saveProductsToLocalStorage();
+  deleteProduct(id: any) {
+    console.log(id.id);
+    const deleteUrl = `${this.apiUrl}/${id.id}`;
+    return this.http.delete(deleteUrl);
   }
-  private saveProductsToLocalStorage() {
-    localStorage.setItem('data', JSON.stringify(this.savedProducts));    
+  updateProduct(id: any, updatedProduct: any): Observable<any> {
+    const url = `${this.apiUrl}/${id+1}`;
+    // console.log("url",url);
+    return this.http.put<any>(url, updatedProduct);
   }
-
-  getClickedProducts(): number[] {
-    return this.clickedProducts;
-  }
-
-  addClickedProduct(productId: number): void {
-    if (!this.clickedProducts.includes(productId)) {
-      this.clickedProducts.push(productId);
-      localStorage.setItem('clickedProducts', JSON.stringify(this.clickedProducts));
-    }
-  }
-  // updateProduct(updatedProduct:any ) {
-  //   const existingProductIndex = this.savedProducts.findIndex(
-  //     (p) => p.id === updatedProduct.id
-  //   );
-  //   if (existingProductIndex !== -1) {
-  //     this.savedProducts[existingProductIndex] = { ...updatedProduct };
-  //     this.saveProductsToLocalStorage()
-  //     return of(updatedProduct);
-  //   }
-  //   return of(null); 
-  // }
- 
-removeClickedProduct(productId: number):void {
-  const productIndex = this.clickedProducts.indexOf(productId);
-  if (productIndex !== -1) {
-    this.clickedProducts.splice(productIndex, 1);
-    localStorage.setItem("clickedProducts",JSON.stringify(this.clickedProducts))
-  }
-  
-  
-}
 }

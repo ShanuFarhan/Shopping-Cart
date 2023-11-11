@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import {FormGroup,FormControl, Validators,FormBuilder} from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
-
-// import { LocalStorageServiceService } from 'src/app/services/local-storage-service.service';
+import { Store } from '@ngrx/store';
+import * as ProductActions from '../../store/product/product.actions';
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
@@ -15,7 +15,7 @@ export class AddProductComponent {
   product:any={}
   isEditing=false
   // productKey:string=''
-  constructor(private fb:FormBuilder ,private productService:ProductService,private route: ActivatedRoute,private router: Router){}
+  constructor(private store:Store, private fb:FormBuilder ,private productService:ProductService,private route: ActivatedRoute,private router: Router){}
   submit=false
   ngOnInit(){
     this.myform=this.fb.group({
@@ -37,9 +37,9 @@ export class AddProductComponent {
           console.log(this.product);
           
         })
-        // const products: = this.productService.getProducts();
-        // this.product = { ...products[productId] };
-        // console.log(this.product);
+        const products:any= this.productService.getProducts();
+        this.product = { ...products[productId] };
+        console.log(this.product);
         
       }
     });
@@ -48,33 +48,54 @@ export class AddProductComponent {
     return this.myform.controls 
 
   }
-  // onSubmit(){
-  //   this.submit=true
-  //   if(!this.myform.invalid)
-  //   this.product=Object.assign(this.product,this.myform.value)
-  //   this.addProduct(this.product)
-  // }
+  saveProduct() {
+    this.submit=true
+    const productData = this.myform.value
+    // console.log("clicked",productData);
+    if(this.isEditing){     
+          const id = +this.route.snapshot.params['id'];
+          console.log("id",id);
+          // productData[id] = this.product;
+          this.productService.updateProduct(id, productData).subscribe((res)=>{
+            console.log("update");
+            
+          });
+          console.log("data",productData);
+
+          this.router.navigate(['/productlist']);
+        // }
+    }
+  else{
+    if(!this.myform.invalid){
+    // this.store.dispatch(ProductActions.setProducts({product:productData} as any))
+    this.productService.addProduct(productData).subscribe((response) => {
+      console.log('Product added successfully', response);
+      this.router.navigate(['/productlist']);
+    });
+  }
+  }
+}
   handleReset(){
     this.myform.reset()
   }
-  saveProduct() {
-    console.log(this.f);
-    this.submit=true
-    if (this.isEditing) {
-      // if(!this.myform.invalid){
-      const products:any = this.productService.getProducts();     
-      const productId = +this.route.snapshot.params['id'];
-      products[productId] = this.product;
-      this.productService.updateProduct(productId, this.product);
-      this.router.navigate(['/productlist']);
-      // }
-    } else {
-      if(!this.myform.invalid){
-      this.productService.addProduct(this.product);
-      this.router.navigate(['/productlist']);
-      }
-    }
-}
+//   saveProduct() {
+//     console.log(this.f);
+//     this.submit=true
+//     if (this.isEditing) {
+//       if(!this.myform.invalid){
+//       const products:any = this.productService.getProducts();     
+//       const productId = +this.route.snapshot.params['id'];
+//       products[productId] = this.product;
+//       this.productService.updateProduct(productId, this.product);
+//       this.router.navigate(['/productlist']);
+//       }
+//     } else {
+//       if(!this.myform.invalid){
+//       this.productService.addProduct(this.product);
+//       this.router.navigate(['/productlist']);
+//       }
+//     }
+// }
 }
 //   addProduct(product:any){
 //     let products=[];

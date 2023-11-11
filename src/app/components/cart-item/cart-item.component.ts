@@ -13,8 +13,8 @@ savedProducts:any=[]
 
 carttotal=0
 constructor(private productService:ProductService ){
-  this.clickedProducts = this.productService.getClickedProducts();
-  this.savedProducts=productService.getProducts()
+  // this.clickedProducts = this.productService.getClickedProducts();
+  // this.savedProducts=productService.getProducts()
   
 }
 
@@ -25,17 +25,17 @@ handleIncrease(item:any){
   }
   else
   item.quantity++;
-  localStorage.setItem('clickedProducts',JSON.stringify(this.clickedProducts))
+  // localStorage.setItem('clickedProducts',JSON.stringify(this.clickedProducts))
 }
 handleDecrease(item:any){
   if(item.quantity>0)
   item.quantity--
-  localStorage.setItem('clickedProducts',JSON.stringify(this.clickedProducts))
+  // localStorage.setItem('clickedProducts',JSON.stringify(this.clickedProducts))
 }
 cancelcart(item:any){
   
-  this.productService.removeClickedProduct(item);
-  this.clickedProducts = this.productService.getClickedProducts();
+  // this.productService.removeClickedProduct(item);
+  // this.clickedProducts = this.productService.getClickedProducts();
 }
 
 

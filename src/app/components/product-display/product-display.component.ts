@@ -12,9 +12,6 @@ constructor(private productService:ProductService)
  this.productService.getProducts().subscribe(res=>{
   this.savedProducts=res
  })
-  // const storedData = localStorage.getItem('data');
-  // if (storedData) {
-  //   this.savedProducts = JSON.parse(storedData);
-  // }
+  
 }
 }

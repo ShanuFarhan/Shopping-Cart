@@ -14,7 +14,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { HttpClientModule } from '@angular/common/http';
+import { ProductModule } from './store/product/product.module';
+import { productReducer } from './store/product/product.reducer';
+import { ProductEffects } from './store/product/product.effects';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +41,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
+    StoreModule.forRoot({products: productReducer}, {}),
+    EffectsModule.forRoot([ProductEffects]),
+    HttpClientModule,
+    ProductModule
   ],
   providers: [],
   bootstrap: [AppComponent]
