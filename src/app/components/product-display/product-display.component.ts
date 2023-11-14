@@ -12,6 +12,7 @@ constructor(private productService:ProductService)
  this.productService.getProducts().subscribe(res=>{
   this.savedProducts=res
  })
+ 
   
 }
 }

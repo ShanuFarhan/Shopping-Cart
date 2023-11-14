@@ -1,6 +1,5 @@
 import { Component, Input,OnInit } from '@angular/core';
-import { ProductsComponent } from '../products/products.component';
-import { CartItemComponent } from '../cart-item/cart-item.component';
+import { ProductService } from 'src/app/services/product.service';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -10,5 +9,10 @@ export class CartComponent  {
   cartItems: any[] = [];
   savedProducts:any=[]
 
-
+  constructor(private productService:ProductService){
+    
+  }
+  ngOnInit(){
+    
+  }  
 }
