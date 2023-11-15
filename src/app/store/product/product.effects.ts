@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { ProductService } from '../../services/product.service';
 import * as ProductActions from './product.actions';
-import { map, mergeMap,catchError } from 'rxjs/operators';
+import {catchError, map, mergeMap} from 'rxjs/operators';
+import { EMPTY } from 'rxjs';
 import { of } from 'rxjs';
 
 @Injectable()
@@ -22,6 +23,42 @@ export class ProductEffects {
       ofType(ProductActions.addProduct),
       mergeMap((action) =>
         this.productService.addProduct(action.product).pipe(map(() => ProductActions.loadProducts()))
+      )
+    )
+  );
+  deleteProduct$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProductActions.deleteProduct),
+      mergeMap(action =>
+        this.productService.deleteProduct(action.productId).pipe(
+          map(() => ProductActions.productDeleted({ productId: action.productId })),
+          catchError(error => {
+            console.error('Error deleting product:', error);
+            return EMPTY; // or return a different action for error handling
+          })
+        )
+      )
+    )
+  );
+  editProduct$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProductActions.editProduct),
+      mergeMap(action =>
+        this.productService.getProduct(action.productId).pipe(
+          mergeMap((product,id) =>
+            this.productService.updateProduct(id,product).pipe(
+              map(updatedProduct => ProductActions.productEdited({ updatedProduct })),
+              catchError(error => {
+                console.error('Error editing product:', error);
+                return EMPTY;
+              })
+            )
+          ),
+          catchError(error => {
+            console.error('Error fetching product for editing:', error);
+            return EMPTY;
+          })
+        )
       )
     )
   );

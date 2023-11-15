@@ -9,18 +9,28 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class ProductService {
-  private cartItemsSubject = new BehaviorSubject<any[]>([]);
-  cartItems$ = this.cartItemsSubject.asObservable();
+  private quantitySubject = new BehaviorSubject<number>(1);
+  quantity$ = this.quantitySubject.asObservable();
+
   private apiUrl ='https://653fb25a9e8bd3be29e1100e.mockapi.io/addtocart/shopping';
   private carturl='https://653fb25a9e8bd3be29e1100e.mockapi.io/addtocart/cart';
 
   constructor(private http: HttpClient) {}
-
+  setProductDetails(productId: number, details: any): Observable<any> {
+    const url = `${this.apiUrl}/${productId}`;
+    return this.http.put(url, details);
+  }
   addProduct(productData: any): Observable<any> {
     return this.http.post(this.apiUrl, productData);
   }
   getProducts(): Observable<any> {
     return this.http.get(this.apiUrl);
+  }
+  getProduct(productId: string): Observable<any> {
+    const getUrl = `${this.apiUrl}/${productId}`;
+    console.log(getUrl);
+    
+    return this.http.get(getUrl);
   }
   deleteProduct(id: any) {
     const deleteUrl = `${this.apiUrl}/${id.id}`;
@@ -28,7 +38,7 @@ export class ProductService {
   }
   updateProduct(id: any, updatedProduct: any): Observable<any> {
     const url = `${this.apiUrl}/${id+1}`;
-    // console.log("url",url);
+    console.log("url",url);
     return this.http.put<any>(url, updatedProduct);
   }
   isInCart(productId: string): Observable<boolean> {

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { Store } from '@ngrx/store';
 import * as ProductActions from '../../store/product/product.actions';
+import { state } from '@angular/animations';
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
@@ -18,6 +19,10 @@ export class AddProductComponent {
   constructor(private store:Store, private fb:FormBuilder ,private productService:ProductService,private route: ActivatedRoute,private router: Router){}
   submit=false
   ngOnInit(){
+    // this.store.dispatch(ProductActions.loadProducts())
+    // this.store.select((state:any)=>state.product).subscribe((products)=>{
+    //   this.product=products
+    // })
     this.myform=this.fb.group({
       name:[' ',Validators.required],
       gender:[' ',Validators.required],
@@ -56,7 +61,8 @@ export class AddProductComponent {
           const id = +this.route.snapshot.params['id'];
           console.log("id",id);
           // productData[id] = this.product;
-          this.productService.updateProduct(id, productData).subscribe((res)=>{
+          // this.store.dispatch(ProductActions.editProduct({productId: this.product.id,productData } as any));
+          this.productService.updateProduct(id,productData).subscribe((res)=>{
             console.log("update");
             
           });
@@ -67,11 +73,12 @@ export class AddProductComponent {
     }
   else{
     if(!this.myform.invalid){
-    // this.store.dispatch(ProductActions.setProducts({product:productData} as any))
-    this.productService.addProduct(productData).subscribe((response) => {
-      console.log('Product added successfully', response);
-      this.router.navigate(['/productlist']);
-    });
+    this.store.dispatch(ProductActions.addProduct({product:productData} as any))
+    this.router.navigate(['/productlist'])
+    // this.productService.addProduct(productData).subscribe((response) => {
+    //   console.log('Product added successfully', response);
+    //   this.router.navigate(['/productlist']);
+    // });
   }
   }
 }

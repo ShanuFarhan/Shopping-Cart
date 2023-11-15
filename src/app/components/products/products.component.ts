@@ -1,6 +1,5 @@
 import { Component,Input} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { count } from 'rxjs';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -11,7 +10,7 @@ import { ProductService } from 'src/app/services/product.service';
 export class ProductsComponent {
   @Input() item:any=[]
   clickedProducts:any[]=[]
-  quantity:number=1
+  @Input() quantity:number=1
   isInCart:boolean=false
   showCounter: boolean = false;
   constructor(private productService:ProductService,private route: ActivatedRoute){
@@ -32,7 +31,7 @@ export class ProductsComponent {
       this.quantity++;
     }
     item.quantity=this.quantity
-    return item.quantity
+    
     
     // console.log(item.quantity); 
     // this.productService.addToCart(item.quantity).subscribe(res=>[
@@ -79,9 +78,10 @@ export class ProductsComponent {
     // console.log(this.quantity);
   }
   addtocart(item:any) {
-    this.isInCart=true
+    
     console.log("Item",item.quantity);
     this.productService.addToCart(item).subscribe((res)=>{
+      this.isInCart=true
           console.log("added",res);
       })  
     // console.log(item); const existingProduct = this.cart.find(p => p.name === product.name);

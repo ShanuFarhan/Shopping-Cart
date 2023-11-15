@@ -8,6 +8,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class CartItemComponent {
 @Input() cartItems:any[]=[]
+@Input() quantity:number=1
 clickedProducts:any[]=[]
 item:any[]=[]
 
@@ -17,7 +18,6 @@ constructor(private productService:ProductService ){
   this.productService.getCartItems().subscribe(res=>{
     this.clickedProducts=res
     // console.log(this.clickedProducts);
-
   })
 }
 
@@ -28,6 +28,7 @@ handleIncrease(item:any){
   }
   else
   item.quantity++;
+// localStorage.setItem("clickedProducts",JSON.stringify(this.clickedProducts))
 // this.productService.addToCart(item.quantity).subscribe(res=>{
 //   console.log(res);
 // })
@@ -37,8 +38,9 @@ handleDecrease(item:any){
   if(item.quantity>0)
     item.quantity--
   // this.clickedProducts=item.quantity
-}
   // localStorage.setItem('clickedProducts',JSON.stringify(this.clickedProducts))
+
+}
 cancelcart(item:any){
   this.productService.removeFromCart(item.id).subscribe((response) => {
     console.log('Product removed from cart:', response);

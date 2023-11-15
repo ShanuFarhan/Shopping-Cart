@@ -8,6 +8,22 @@ export const productReducer = createReducer(
   initialState,
   on(ProductActions.setProducts, (state, { products }) => [...products]),
   on(ProductActions.addProduct, (state, { product }) => [...state, product]),
+  on(ProductActions.deleteProduct, (state, { productId }) => {
+    return state.filter((product:any) => product.id !== productId);
+  }),
+  // on(ProductActions.productEdited, (state, { updatedProduct }) => {
+  //   const index = state.findIndex((product:any) => product.id === updatedProduct.id);
+  //   if (index !== -1) {
+  //     const newState = [...state];
+  //     newState[index] = updatedProduct;
+  //     return newState;
+  //   }
+  //   return state;
+  // }),
+  on(ProductActions.productEdited, (state, { updatedProduct }) => {
+    return state.map((product:any) => (product.id === updatedProduct.id ? updatedProduct : product));
+  })
+);
   // on(ProductActions.addToCart, (state, { product, quantity }) => {
   //   const existingItem = state.cart.find((item:any) => item.product.id === product.id);
 
@@ -33,7 +49,7 @@ export const productReducer = createReducer(
   //   ).filter((item:any) => item.quantity > 0);
   //   return { ...state, cart: updatedCart };
   // })
-);
+
   // on(ProductActions.deleteProduct, (state, { id }) => ({ ...state, products: state.products.filter((p:any) => p.id !== id)} )),
   // on(ProductActions.updateProduct, (state, {id, updatedProduct }) => {
   //   console.log(id+1);

@@ -36,17 +36,19 @@ export class ProductListComponent {
       
   // }
   //   }
-  deleteProduct(productId:number) {
+  deleteProduct(productId:string) {
     // console.log(productId);
-      this.productservice.deleteProduct(productId).subscribe(()=>{
-        this.store.dispatch(ProductActions.loadProducts())
-        console.log("Product deleted succussfully");
-      },
-      (error)=>{
-        console.log("error",error);
+    this.store.dispatch(ProductActions.deleteProduct({ productId }));
+
+      // this.productservice.deleteProduct(productId).subscribe(()=>{
+      //   this.store.dispatch(ProductActions.loadProducts())
+      //   console.log("Product deleted succussfully");
+      // },
+      // (error)=>{
+      //   console.log("error",error);
         
-      }
-      );
+      // }
+      // );
     }
   
     

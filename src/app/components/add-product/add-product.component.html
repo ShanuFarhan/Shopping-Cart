@@ -38,7 +38,7 @@
           </div>
           <div class="col-md-6">
             <label for="">Currency</label>
-            <select  formControlName="currency"  value="currency" [(ngModel)]="product.currency" class="form-select" 
+            <select  formControlName="currency"  value="" [(ngModel)]="product.currency" class="form-select" 
             [ngClass]="{'is-invalid':submit&&f.currency.errors}"
             >
                 <option selected disabled>Currency</option>
@@ -72,7 +72,7 @@
           <div class="col-md-6">
                 <!-- <label class="form-label text-white m-1 choose" for="customFile1">Choose file</label> -->
                 <!-- <input type="file" name="image" [(ngModel)]="product.image" value="" class="form-control" id="customFile1" -->
-                <input  name="image" formControlName="image" value="image" [(ngModel)]="product.image" type="file" placeholder="" class="form-control"
+                <input  name="image" formControlName="image" value="" [(ngModel)]="product.image" type="file" placeholder="" class="form-control"
                 [ngClass]="{'is-invalid':submit&&f.image.errors}"
                 >
                 <div *ngIf="submit&&f.image.errors" class="invalid-feedback errorsdiv">
